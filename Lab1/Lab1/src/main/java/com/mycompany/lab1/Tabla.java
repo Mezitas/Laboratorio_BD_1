@@ -3,64 +3,90 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.lab1;
+
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 /**
  *
  * @author ING-SIS
  */
 public class Tabla {
+
     private final String archivo;
     private ArrayList<Registro> registros;
-    
-    Tabla(String archivo){
-        this.archivo=archivo;
-        registros = new ArrayList<Registro>();
+
+    Tabla(String archivo) {
+        this.archivo = archivo;
+        registros = new ArrayList<>();
     }
-    public void agregarTxt(){
-         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-             String linea;
-             
-             while((linea=br.readLine())!=null){
+
+    public void agregarTxt() {
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(", ");
-                 
+
                 String cedula = datos[0];
-                String nombre= datos[1];
-                String fechaNacimiento= datos[2];
-                String celular= datos[3];
-                String correo= datos[4];
-                String salarioS= datos[5];
-                String facultad= datos[6];
-                
-                double salario= Double.parseDouble(salarioS);
-                
-                Registro r = new Registro(cedula, nombre,fechaNacimiento,celular,correo,salario,facultad);
-                
+                String nombre = datos[1];
+                String fechaNacimiento = datos[2];
+                String celular = datos[3];
+                String correo = datos[4];
+                String salarioS = datos[5];
+                String facultad = datos[6];
+
+                double salario = Double.parseDouble(salarioS);
+
+                Registro r = new Registro(cedula, nombre, fechaNacimiento, celular, correo, salario, facultad);
+
                 registros.add(r);
-             }
-        }catch(IOException e){
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void agregarRegistro(Registro r){
-        
+
+    public void agregarRegistro(Registro r) {
+        registros.add(r);
     }
-    public boolean eliminarRegistro(String cedula){
+
+    public boolean eliminarRegistro(String cedula) {
+        Iterator<Registro> elemento = registros.iterator();
+        while (elemento.hasNext()) {
+            if (elemento.next().cedula.equals(cedula)) {
+                elemento.remove();
+                return true;
+            }
+        }
         return false;
     }
-    public Registro buscarPorCedula(String cedula){
+
+    public Registro buscarPorCedula(String cedula) {
         return null;
     }
-    public void listarRegistros(){
-        
+
+    public void listarRegistros() {
+
     }
-    public void mostrar(){
+    public void guardar(){
+        try (PrintWriter pw = new PrintWriter(new FileWriter(archivo))) {
+        for (Registro r : registros) {
+            pw.println(r.toString());
+        }
+    } catch (IOException e) {
+        System.out.println("Error al sobrescribir el archivo: " + e.getMessage());
+    }
+    }
+    public void mostrar() {
         for (int i = 0; i < registros.size(); i++) {
             System.out.println(registros.get(i).toString());
         }
     }
-    
+
 }

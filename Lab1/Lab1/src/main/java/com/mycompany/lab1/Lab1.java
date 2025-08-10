@@ -1,9 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.lab1;
-import java.util.Scanner;
 
 /**
  *
@@ -15,41 +13,15 @@ public class Lab1 {
         String archivo = "..\\Lab1\\src\\main\\java\\com\\mycompany\\lab1\\personas.txt";
         Tabla tabla = new Tabla(archivo);
         tabla.agregarTxt();
-        tabla.mostrar();
-        
-        Scanner sc = new Scanner(System.in);
-        int opcion;
-        do {
-            System.out.println("Menu");
-            System.out.println("1. Agregar");
-            System.out.println("2. Eliminar");
-            System.out.println("3. Buscar por cédula");
-            System.out.println("4. Listar registros");
-            System.out.println("5. Salir");
-            System.out.print("Seleccione una opción: ");
-            opcion = sc.nextInt();
-           
-            switch(opcion){
-                case 1:
-                       System.out.print("Cédula: ");
-                    String cedula = sc.nextLine();
-                    System.out.print("Nombre: ");
-                    String nombre = sc.nextLine();
-                    System.out.print("Fecha de nacimiento (dd/mm/yyyy): ");
-                    String fecha = sc.nextLine();
-                    System.out.print("Celular: ");
-                    String celular = sc.nextLine();
-                    System.out.print("Correo: ");
-                    String correo = sc.nextLine();
-                    System.out.print("Salario: ");
-                    double salario = sc.nextDouble();
-                    sc.nextLine();
-                    System.out.print("Facultad: ");
-                    String facultad = sc.nextLine();
-                    tabla.agregarRegistro(new Registro(cedula, nombre, fecha, celular, correo, salario, facultad));
-                    System.out.println("Registro agregado.");
-                    break;
-               
+
+        Menu m = new Menu(tabla);
+
+        int repetir = 1;
+        while (repetir == 1) {
+            repetir = m.menuVisual();
+        }
+
+        /*
                 case 2:
                     System.out.print("Ingrese cédula a eliminar: ");
                     String cedulaEliminar = sc.nextLine();
@@ -84,6 +56,6 @@ public class Lab1 {
            
             }
         }while (opcion != 5);
-            sc.close();
+            sc.close();*/
     }
 }
