@@ -20,42 +20,5 @@ public class Lab1 {
         while (repetir == 1) {
             repetir = m.menuVisual();
         }
-
-        /*
-                case 2:
-                    System.out.print("Ingrese cédula a eliminar: ");
-                    String cedulaEliminar = sc.nextLine();
-                    if (tabla.eliminarRegistro(cedulaEliminar)){
-                        System.out.println("Registro eliminado.");
-                    }else{
-                        System.out.println("No se encontró el registro.");
-                    }
-                    break;
-                   
-                case 3:
-                    System.out.print("Ingrese cédula a buscar: ");
-                     String cedulaBuscar = sc.nextLine();
-                    Registro r = tabla.buscarPorCedula(cedulaBuscar);
-                    if (r != null)
-                        System.out.println(r);
-                    else
-                        System.out.println("No se encontró el registro.");
-                    break;
-                   
-                case 4:
-                    tabla.listarRegistros();
-                    break;
-                case 5:
-                    System.out.println("Saliendo...");
-                    break;
-
-                default:
-                    System.out.println("Opción inválida.");
-                   
-                   
-           
-            }
-        }while (opcion != 5);
-            sc.close();*/
     }
 }
