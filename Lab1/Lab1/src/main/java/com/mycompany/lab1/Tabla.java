@@ -1,0 +1,66 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.lab1;
+import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+/**
+ *
+ * @author ING-SIS
+ */
+public class Tabla {
+    private final String archivo;
+    private ArrayList<Registro> registros;
+    
+    Tabla(String archivo){
+        this.archivo=archivo;
+        registros = new ArrayList<Registro>();
+    }
+    public void agregarTxt(){
+         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+             String linea;
+             
+             while((linea=br.readLine())!=null){
+                String[] datos = linea.split(", ");
+                 
+                String cedula = datos[0];
+                String nombre= datos[1];
+                String fechaNacimiento= datos[2];
+                String celular= datos[3];
+                String correo= datos[4];
+                String salarioS= datos[5];
+                String facultad= datos[6];
+                
+                double salario= Double.parseDouble(salarioS);
+                
+                Registro r = new Registro(cedula, nombre,fechaNacimiento,celular,correo,salario,facultad);
+                
+                registros.add(r);
+             }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void agregarRegistro(Registro r){
+        
+    }
+    public boolean eliminarRegistro(String cedula){
+        return false;
+    }
+    public Registro buscarPorCedula(String cedula){
+        return null;
+    }
+    public void listarRegistros(){
+        
+    }
+    public void mostrar(){
+        for (int i = 0; i < registros.size(); i++) {
+            System.out.println(registros.get(i).toString());
+        }
+    }
+    
+}
