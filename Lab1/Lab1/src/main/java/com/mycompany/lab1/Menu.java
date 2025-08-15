@@ -38,11 +38,15 @@ public class Menu {
                 Option_1();
             case 2 ->
                 Option_2();
-            case 5 ->{
+            case 3 -> 
+                option_3();
+            case 4 ->
+                option_4();
+            case 5 -> {
                 salir = -1;
                 tabla.guardar();
             }
-            default ->{
+            default -> {
                 System.out.println("Ingresa un valor valido");
             }
         }
@@ -80,6 +84,31 @@ public class Menu {
             } else {
                 System.out.println("Registro no encontrado");
             }
+        }
+    }
+
+    private void option_3() {
+        if (!VContinuar()) {
+            System.out.println("Saliendo...");
+        } else {
+            System.out.print("Ingrese cédula a buscar: ");
+            String cedulaBuscar = sc.nextLine();
+            Registro r = tabla.buscarPorCedula(cedulaBuscar);
+            if (r != null) {
+                System.out.println(r.toString());
+            } else {
+                System.out.println("No se encontró el registro.");
+            }
+
+        }
+
+    }
+
+    private void option_4() {
+        if (!VContinuar()) {
+            System.out.println("Saliendo...");
+        } else {
+            tabla.listarRegistros();
         }
     }
 

@@ -68,21 +68,34 @@ public class Tabla {
     }
 
     public Registro buscarPorCedula(String cedula) {
+        for (Registro r : registros) {
+            if (r.cedula.equals(cedula)) {
+                return r;
+            }
+        }
         return null;
     }
 
     public void listarRegistros() {
-
-    }
-    public void guardar(){
-        try (PrintWriter pw = new PrintWriter(new FileWriter(archivo))) {
-        for (Registro r : registros) {
-            pw.println(r.toString());
+        if (registros.isEmpty()) {
+            System.out.println("No hay registros cargados.");
+        } else {
+            for (Registro r : registros) {
+                System.out.println(r.toString());
+            }
         }
-    } catch (IOException e) {
-        System.out.println("Error al sobrescribir el archivo: " + e.getMessage());
     }
+
+    public void guardar() {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(archivo))) {
+            for (Registro r : registros) {
+                pw.println(r.toString());
+            }
+        } catch (IOException e) {
+            System.out.println("Error al sobrescribir el archivo: " + e.getMessage());
+        }
     }
+
     public void mostrar() {
         for (int i = 0; i < registros.size(); i++) {
             System.out.println(registros.get(i).toString());

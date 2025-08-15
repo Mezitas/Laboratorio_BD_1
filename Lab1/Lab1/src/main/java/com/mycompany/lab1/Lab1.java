@@ -4,7 +4,7 @@
 package com.mycompany.lab1;
 
 /**
- *
+ *3
  * @author ING-SIS
  */
 public class Lab1 {
